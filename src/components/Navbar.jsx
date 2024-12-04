@@ -1,7 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from '../assets/images/logo-2.webp'
+import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
 const Navbar = () => {
+
+
 
   const links = (
     <>
