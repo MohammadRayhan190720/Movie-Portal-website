@@ -5,7 +5,8 @@ import { useContext } from "react";
 
 const Navbar = () => {
 
-
+  const { user, handleSignOut } = useContext(AuthContext);
+  console.log(user)
 
   const links = (
     <>
@@ -47,12 +48,27 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-3">
-        <Link className="bg-[#ff7043] px-5 py-3 rounded-lg" to="/signup">
-          Sign Up
-        </Link>
-        <Link className="bg-[#0097a7] px-5 py-3 rounded-lg" to="/signin">
-          Sign In
-        </Link>
+        {user && user.email ? (
+          <div className="flex gap-5 items-center">
+            <img className="w-16 h-16 rounded-full"
+              title={user?.displayName}
+              src={user?.photoURL}
+              alt={user?.displayName}
+            />
+            <button onClick={handleSignOut} className="bg-[#ff7043] px-5 py-3 rounded-lg">
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <div className="flex gap-5 items-center">
+            <Link className="bg-[#ff7043] px-5 py-3 rounded-lg" to="/signup">
+              Sign Up
+            </Link>
+            <Link className="bg-[#0097a7] px-5 py-3 rounded-lg" to="/signin">
+              Sign In
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
