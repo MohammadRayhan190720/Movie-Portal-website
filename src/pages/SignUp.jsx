@@ -1,45 +1,92 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
 
-
 const SignUp = () => {
+  const { creatNewUser, signInWithGoogle, updateUserProfile, setUser } =
+    useContext(AuthContext);
 
-  const { creatNewUser } = useContext(AuthContext);
-
+  const navigate = useNavigate();
 
   //handlesingUp
-  const handleSignUp = e =>{
+  const handleSignUp = (e) => {
     e.preventDefault();
 
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const photo = form.photo.value;
-        const password = form.password.value;
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
 
-        console.log(name, email, photo, password);
+    //password validation
 
-        //creat user
+    const validPassword = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (!validPassword.test(password)) {
+      Swal.fire({
+        icon: "error",
+        title: "Weak Password",
+        text: "Password must be a uppercase letter,a lowercase letter and six characters length",
+      });
+      return;
+    }
 
-        creatNewUser(email,password)
-        .then(result =>{
-          console.log(result.user)
-        })
-        .catch(err =>{
-         Swal.fire({
-           icon: "error",
-           title: `${err.message}`,
-           text: "Something went wrong!",
-           footer:
-             '<a href="https://www.google.com/">Why do I have this issue?</a>',
-         });
-        })
+    //creat user
 
+    creatNewUser(email, password)
+      .then((result) => {
+        setUser(result.user);
+        navigate("/");
 
-  }
+        // update profile
+
+        updateUserProfile({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser((previousUser) => {
+              return { ...previousUser, displayName: name, photoURL: photo };
+            });
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: `${error.message}`,
+              text: "Something went wrong!",
+            });
+            return;
+          });
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: `${err.message}`,
+          text: "Something went wrong!",
+          footer:
+            '<a href="https://www.google.com/">Why do I have this issue?</a>',
+        });
+      });
+  };
+
+  //handleGoogleSignIn
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        setUser(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        // console.log(error.message);
+        Swal.fire({
+          icon: "error",
+          title: `${error.message}`,
+          text: "Something went wrong!",
+        });
+        return;
+      });
+
+  };
+
   return (
     <div className="pt-10 lg:pt-16 font-Nunito bg-gradient-to-r from-background to-primary">
       <div>
@@ -119,7 +166,7 @@ const SignUp = () => {
             <div className="flex  text-text mt-5 items-center justify-center">
               <button
                 className="px-5 py-3 rounded-sm bg-secondary hover:bg-accent "
-                // onClick={handleGoogleSignIn}
+                onClick={handleGoogleSignIn}
               >
                 Sign In With Google
               </button>

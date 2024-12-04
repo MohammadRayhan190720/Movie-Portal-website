@@ -1,14 +1,15 @@
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
 
 const SignIn = () => {
+  const { singInUser, signInWithGoogle, setUser } = useContext(AuthContext);
 
-  const { singInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const handleSignIn = e =>{
+  const handleSignIn = (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -17,7 +18,8 @@ const SignIn = () => {
 
     singInUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        setUser(result.user);
+        navigate("/");
       })
       .catch((err) => {
         Swal.fire({
@@ -28,9 +30,26 @@ const SignIn = () => {
             '<a href="https://www.google.com/">Why do I have this issue?</a>',
         });
       });
+  };
 
+  //handleGoogleSignIn
 
-  }
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        setUser(result.user);
+        navigate("/");
+      })
+      .catch((error) => {
+        // console.log(error.message);
+      Swal.fire({
+        icon: "error",
+        title: `${error.message}`,
+        text: "Something went wrong!",
+      });
+        return;
+      });
+  };
   return (
     <div className="pt-10 lg:pt-16 font-Nunito bg-gradient-to-r from-background to-primary min-h-screen">
       <div>
@@ -86,7 +105,7 @@ const SignIn = () => {
             <div className="flex  text-text mt-5 items-center justify-center">
               <button
                 className="px-5 py-3 rounded-sm bg-secondary hover:bg-accent "
-                // onClick={handleGoogleSignIn}
+                onClick={handleGoogleSignIn}
               >
                 Sign In With Google
               </button>

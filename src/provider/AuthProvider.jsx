@@ -1,5 +1,5 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
-import { createContext, useState } from "react";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
+import { createContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.init";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -32,6 +32,11 @@ const AuthProvider = ({children}) => {
     return signInWithPopup(auth, googleProvider);
   };
 
+  //update profile
+
+  const updateUserProfile = (updatedData) => {
+    return updateProfile(auth.currentUser, updatedData);
+  };
   //handlsignout
 
   const handleSignOut = () => {
@@ -46,13 +51,25 @@ const AuthProvider = ({children}) => {
     creatNewUser,
     singInUser,
     signInWithGoogle,
-    handleSignOut
+    handleSignOut,
+    updateUserProfile,
+  };
 
-  }
+  //create a observer
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log("currentUSer", currentUser);
+      setLoading(false);
+    });
+    return () => {
+      unsubscribe;
+    };
+  }, []);
 
-  return <AuthContext.Provider value={authInfo}>
-    {children}
-    </AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;
