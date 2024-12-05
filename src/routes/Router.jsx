@@ -6,8 +6,8 @@ import Home from "../pages/Home";
 import AddMovie from "../pages/AddMovie";
 import AllMovies from "../pages/AllMovies";
 import MyFavourites from "../pages/MyFavourites";
-import UpComeingMovies from "../components/UpComeingMovies";
 import AllUpcomeing from "../pages/AllUpcomeing";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +21,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/addmovies",
-        element: <AddMovie></AddMovie>,
+        element: (
+          <PrivateRoute>
+            <AddMovie></AddMovie>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allMovies",
@@ -29,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/favourites",
-        element: <MyFavourites></MyFavourites>,
+        element: (
+          <PrivateRoute>
+            <MyFavourites></MyFavourites>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allupcomeing",

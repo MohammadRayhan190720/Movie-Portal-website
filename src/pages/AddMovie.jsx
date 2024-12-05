@@ -6,12 +6,13 @@ import { AuthContext } from "../provider/AuthProvider";
 const AddMovie = () => {
 
   const {user} = useContext(AuthContext);
-  console.log(user);
+
+  const email = user?.email;
 
     const [selectedGenres, setSelectedGenres] = useState([]);
     const[releaseYear,setReleaseYear] = useState("");
-    const[rating,setRating] = useState();
-    const [email, setEmail] = useState("");
+    const[rating,setRating] = useState(0);
+    // const [email, setEmail] = useState("");
 
 
     const handleGenreChange = (event) => {
@@ -31,16 +32,16 @@ const AddMovie = () => {
       setRating(rate)
     }
 
-    //default email
-      useEffect(() => {
-        if (user) {
-          setEmail(user.email ||  ""); // Prefill when user updates
-        }
-      }, [user]);
+    // //default email
+      // useEffect(() => {
+      //   if (user) {
+      //     setEmail(user.email ||  ""); // Prefill when user updates
+      //   }
+      // }, [user]);
 
-        const handleInputChange = (e) => {
-          setEmail(e.target.value); // Update state as user types
-        };
+      //   const handleInputChange = (e) => {
+      //     setEmail(e.target.value); // Update state as user types
+      //   };
 
 
   const handleAddMovie = (e) => {
@@ -63,7 +64,7 @@ const AddMovie = () => {
     const release = releaseYear;
     const ratings = rating;
 
-    if(ratings < 0){
+    if(ratings == 0){
             Swal.fire({
               icon: "error",
               title: "Invalid",
@@ -83,7 +84,38 @@ const AddMovie = () => {
             return;
     }
 
-    console.log(movietitle,movieposter,genres,release,ratings,summary);
+    // console.log(movietitle,movieposter,genres,release,ratings,summary);
+     const newMovies = {
+       movieposter,
+       movietitle,
+       genres,
+       release,
+       ratings,
+       summary,
+       email,
+     };
+    //send data to database
+
+    fetch("http://localhost:5000/movies",{
+      method: "POST",
+      headers: {
+        'content-type' : 'application/json'
+      },
+      body: JSON.stringify(newMovies)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.insertedId){
+        Swal.fire({
+          title: "Success",
+          text: "Movie inserted successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+
+      }
+    })
+
 
 
 
@@ -165,8 +197,8 @@ const AddMovie = () => {
                   </label>
                   <input
                     type="email"
-                    onChange={handleInputChange}
-                    value={user?.email}
+                    // onChange={handleInputChange}
+                    value={email}
                     className="input input-bordered"
                     required
                   />
