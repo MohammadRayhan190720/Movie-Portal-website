@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext,  useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
@@ -32,16 +32,6 @@ const AddMovie = () => {
       setRating(rate)
     }
 
-    // //default email
-      // useEffect(() => {
-      //   if (user) {
-      //     setEmail(user.email ||  ""); // Prefill when user updates
-      //   }
-      // }, [user]);
-
-      //   const handleInputChange = (e) => {
-      //     setEmail(e.target.value); // Update state as user types
-      //   };
 
 
   const handleAddMovie = (e) => {
@@ -61,6 +51,7 @@ const AddMovie = () => {
       return;
     }
     const genres = selectedGenres;
+    const duration = form.duration.value;
     const release = releaseYear;
     const ratings = rating;
 
@@ -88,6 +79,7 @@ const AddMovie = () => {
      const newMovies = {
        movieposter,
        movietitle,
+       duration,
        genres,
        release,
        ratings,
