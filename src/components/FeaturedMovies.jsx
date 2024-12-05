@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import FeaturedMovieCard from "./FeaturedMovieCard";
 
 const FeaturedMovies = ({moviesData}) => {
@@ -14,10 +15,17 @@ const FeaturedMovies = ({moviesData}) => {
         ignite your cinematic journey—explore your next favorite film today!
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5">
-        {
-          moviesData.map(movieData => <FeaturedMovieCard key={movieData._id} movieData={movieData}></FeaturedMovieCard>)
-        }
+      <div className="grid grid-cols-1  md:grid-cols-3 gap-8">
+        {moviesData.map((movieData) => (
+          <FeaturedMovieCard
+            key={movieData._id}
+            movieData={movieData}
+          ></FeaturedMovieCard>
+        ))}
+      </div>
+
+      <div className="text-center mt-8 lg:mt-10">
+        <Link to='/allMovies' className="px-5 py-3 rounded-xl bg-secondary">See All Movies</Link>
       </div>
     </div>
   );
