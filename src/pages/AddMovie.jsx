@@ -1,17 +1,32 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Rating } from "react-simple-star-rating";
+import Swal from "sweetalert2";
+import { AuthContext } from "../provider/AuthProvider";
 
 const AddMovie = () => {
 
-    const [selectedGenres, setSelectedGenres] = useState([]);
+  const {user} = useContext(AuthContext);
 
-    // console.log(selectedGenres)
+    const [selectedGenres, setSelectedGenres] = useState([]);
+    const[releaseYear,setReleaseYear] = useState("");
+    const[rating,setRating] = useState();
 
     const handleGenreChange = (event) => {
       const options = event.target.selectedOptions; // Get selected options
       const selectedValues = Array.from(options).map((option) => option.value); // Create an array of selected values
       setSelectedGenres(selectedValues); // Update state with selected genres
     };
+
+    const handleYearChange = event =>{
+      setReleaseYear(event.target.value)
+
+    }
+
+    //handlerating
+
+    const handleRatingChange = (rate) =>{
+      setRating(rate)
+    }
 
 
   const handleAddMovie = (e) => {
@@ -22,9 +37,39 @@ const AddMovie = () => {
 
     const movieposter = form.movieposter.value;
     const movietitle = form.movietitle.value;
+    if(movietitle.length < 2){
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Movie Title",
+        text: "Title must be at least 2 characters",
+      });
+      return;
+    }
     const genres = selectedGenres;
+    const release = releaseYear;
+    const ratings = rating;
 
-    console.log(movietitle,movieposter,genres);
+    if(ratings < 0){
+            Swal.fire({
+              icon: "error",
+              title: "Invalid",
+              text: "Please Rating the Movie",
+            });
+            return;
+
+    }
+    const summary = form.summary.value;
+
+    if(summary.length < 10){
+            Swal.fire({
+              icon: "error",
+              title: "Invalid Movie Summary",
+              text: "Summary must be at least 10 characters",
+            });
+            return;
+    }
+
+    console.log(movietitle,movieposter,genres,release,ratings,summary);
 
 
 
@@ -75,8 +120,8 @@ const AddMovie = () => {
                   />
                 </div>
               </div>
-              <div className="lg:flex gap-5">
-                <div className="form-control lg:w-1/2">
+              <div className="">
+                <div className="form-control w-full">
                   <label className="label">
                     <span className="label-text text-text">Genre</span>
                   </label>
@@ -98,6 +143,19 @@ const AddMovie = () => {
                     <option value="adventure">Adventure</option>
                   </select>
                 </div>
+              </div>
+              <div className="lg:flex gap-5">
+                <div className="form-control lg:w-1/2">
+                  <label className="label">
+                    <span className="label-text text-text">Email</span>
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Your Email"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
                 <div className="form-control lg:w-1/2">
                   <label className="label">
                     <span className="label-text text-text">Duration</span>
@@ -107,7 +165,7 @@ const AddMovie = () => {
                     placeholder="Enter Movie Duration"
                     name="duration"
                     className="input input-bordered"
-                    min='60'
+                    min="60"
                     required
                   />
                 </div>
@@ -117,13 +175,21 @@ const AddMovie = () => {
                   <label className="label">
                     <span className="label-text text-text">Release Year</span>
                   </label>
-                  <input
-                    type="date"
-                    name="releaseyear"
-                    placeholder="Enter Relese Year"
-                    className="input input-bordered"
+                  <select
+                    className="select  w-full input "
+                    value={releaseYear}
+                    onChange={handleYearChange}
                     required
-                  />
+                  >
+                    <option disabled selected>
+                      Selected Release Year
+                    </option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                    <option value="2020">2020</option>
+                  </select>
                 </div>
                 <div className=" form-control flex  justify-center    lg:w-1/2  ">
                   <label className="label">
@@ -138,7 +204,7 @@ const AddMovie = () => {
                     }}
                   >
                     <Rating
-                      onClick={function noRefCheck() {}}
+                      onClick={handleRatingChange}
                       showTooltip
                       tooltipArray={[
                         "Terrible",
@@ -159,6 +225,7 @@ const AddMovie = () => {
                   <textarea
                     placeholder="Enter Movie Summary"
                     name="summary"
+                    required
                     className="textarea textarea-bordered textarea-lg w-full lg:max-w-7xl"
                   ></textarea>
                 </div>
