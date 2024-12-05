@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
@@ -6,10 +6,13 @@ import { AuthContext } from "../provider/AuthProvider";
 const AddMovie = () => {
 
   const {user} = useContext(AuthContext);
+  console.log(user);
 
     const [selectedGenres, setSelectedGenres] = useState([]);
     const[releaseYear,setReleaseYear] = useState("");
     const[rating,setRating] = useState();
+    const [email, setEmail] = useState("");
+
 
     const handleGenreChange = (event) => {
       const options = event.target.selectedOptions; // Get selected options
@@ -27,6 +30,17 @@ const AddMovie = () => {
     const handleRatingChange = (rate) =>{
       setRating(rate)
     }
+
+    //default email
+      useEffect(() => {
+        if (user) {
+          setEmail(user.email ||  ""); // Prefill when user updates
+        }
+      }, [user]);
+
+        const handleInputChange = (e) => {
+          setEmail(e.target.value); // Update state as user types
+        };
 
 
   const handleAddMovie = (e) => {
@@ -150,8 +164,9 @@ const AddMovie = () => {
                     <span className="label-text text-text">Email</span>
                   </label>
                   <input
-                    type="number"
-                    placeholder="Your Email"
+                    type="email"
+                    onChange={handleInputChange}
+                    value={user?.email}
                     className="input input-bordered"
                     required
                   />
