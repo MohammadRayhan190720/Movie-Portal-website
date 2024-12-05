@@ -19,7 +19,7 @@ const Banner = () => {
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
 
   return (
-    <div className="container mx-auto">
+    <div className="max-w-7xl mx-auto">
       {/* Main slider */}
       <Swiper
         modules={[Navigation, Thumbs]}

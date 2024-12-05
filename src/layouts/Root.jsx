@@ -4,11 +4,11 @@ import Footer from "../components/Footer";
 
 const Root = () => {
   return (
-    <div className="text-text font-Nunito ">
+    <div className="text-text font-Nunito bg-background ">
         <Navbar></Navbar>
-      <div className="max-w-7xl mx-auto">
+      {/* <div className="max-w-7xl mx-auto"> */}
         <Outlet></Outlet>
-      </div>
+      {/* </div> */}
         <Footer></Footer>
     </div>
   );

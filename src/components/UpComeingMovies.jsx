@@ -27,11 +27,11 @@ const UpComeingMovies = () => {
     }, []);
 
   return (
-    <div className="mt-10 lg:mt-16">
-      <h2 className="font-Cinzel font-semibold  text-center text-black text-3xl md:text-4xl lg:text-5xl">
+    <div className="mt-10 lg:mt-16 max-w-7xl mx-auto ">
+      <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl lg:text-5xl">
         Upcomeing Movies
       </h2>
-      <p className="text-black w-1/2 mx-auto text-center mt-4">
+      <p className=" w-1/2 mx-auto text-center mt-4">
         Discover the most anticipated upcoming movies, featuring action-packed
         adventures, thrilling plots, and captivating performances coming soon to
         theaters!
