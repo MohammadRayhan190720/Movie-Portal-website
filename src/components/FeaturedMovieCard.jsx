@@ -1,8 +1,9 @@
 import { MdMovieFilter } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const FeaturedMovieCard = ({ movieData }) => {
   console.log(movieData);
-  const { movieposter, movietitle, genres, release } = movieData;
+  const { movieposter, movietitle, genres, release,_id } = movieData;
   return (
     <div>
       <div className="card bg-primary shadow-xl mt-8 lg:mt-12">
@@ -29,9 +30,9 @@ const FeaturedMovieCard = ({ movieData }) => {
           </div>
 
           <div className="card-actions ">
-            <button className="px-5 py-3 rounded-xl bg-accent focus:bg-secondary">
+            <Link to={`/movieDetails/${_id}`} className="px-5 py-3 rounded-xl bg-accent focus:bg-secondary">
               See Details
-            </button>
+            </Link>
           </div>
         </div>
       </div>
