@@ -8,6 +8,7 @@ const AddMovie = () => {
   const {user} = useContext(AuthContext);
 
   const email = user?.email;
+  console.log(email)
 
     const [selectedGenres, setSelectedGenres] = useState([]);
     const[releaseYear,setReleaseYear] = useState("");

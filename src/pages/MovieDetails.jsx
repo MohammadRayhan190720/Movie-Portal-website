@@ -7,18 +7,20 @@ import { AiFillDelete } from "react-icons/ai";
 import { SlLike } from "react-icons/sl";
 import Swal from "sweetalert2";
 import { CiEdit } from "react-icons/ci";
-
-
-
-
-
-
+import { AuthContext } from "../provider/AuthProvider";
+import { useContext } from "react";
 
 
 const MovieDetails = () => {
   const navigate = useNavigate();
 
   const data = useLoaderData();
+
+  const {user} = useContext(AuthContext);
+
+  const email = user?.email;
+  console.log(email);
+
 
   const {
     _id,
@@ -30,9 +32,8 @@ const MovieDetails = () => {
     release,
     summary,
   } = data;
-  
 
-  const handleMovieDelete = id =>{
+  const handleMovieDelete = (id) => {
     console.log(id);
 
     Swal.fire({
@@ -45,32 +46,49 @@ const MovieDetails = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-            fetch(`http://localhost:5000/movies/status/${id}`, {
-              method: "DELETE",
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                // console.log(data);
-                if (data.deletedCount === 1) {
-                          Swal.fire({
-                            title: "Deleted!",
-                            text: "Movie has been deleted",
-                            icon: "success",
-                          });
-                          navigate("/allMovies");
-                          return;
-                }
+        fetch(`http://localhost:5000/movies/status/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log(data);
+            if (data.deletedCount === 1) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Movie has been deleted",
+                icon: "success",
               });
-
-
+              navigate("/allMovies");
+              return;
+            }
+          });
       }
     });
+  };
 
+  //add to favourite
 
-  }
+  const handleAddFavourite = (data) => {
+    console.log(data);
 
-
+    fetch("http://localhost:5000/favouriteMovies", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Successfully Added",
+            text: "Movie Added to Favourite List",
+            icon: "success",
+          });
+        }
+      });
+  };
 
   return (
     <div className="card lg:flex-row gap-5  justify-center  max-w-5xl mx-auto shadow-xl mt-8 lg:mt-12 p-5 font-Montserrat bg-gradient-to-b from-[#2C3E50] to-[#4A69BD] text-white">
@@ -121,12 +139,20 @@ const MovieDetails = () => {
           </p>
         </div>
         <div className="flex items-center justify-center gap-5 mt-6 lg:mt-8">
-          <button className="px-5 py-3 bg-accent focus:bg-orange-400 flex items-center gap-3">
+          <button
+            onClick={() => {
+              handleAddFavourite(data);
+            }}
+            className="px-5 py-3 bg-accent focus:bg-orange-400 flex items-center gap-3"
+          >
             {" "}
             <SlLike />
             Add To Favourite
           </button>
-          <Link to={`/updatemovies/${_id}`} className="px-5 py-3 bg-green-600 flex items-center gap-3 focus:bg-green-950">
+          <Link
+            to={`/updatemovies/${_id}`}
+            className="px-5 py-3 bg-green-600 flex items-center gap-3 focus:bg-green-950"
+          >
             {" "}
             <CiEdit />
             Update Movie
