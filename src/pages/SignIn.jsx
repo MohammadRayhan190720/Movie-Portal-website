@@ -3,18 +3,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 const SignIn = () => {
   const { singInUser, signInWithGoogle, setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
 
-  const handleSignIn = (e) => {
-    e.preventDefault();
+  const handleSignIn = (data) => {
+    // e.preventDefault();
+    const {email,password} = data;
 
-    const form = e.target;
-    const email = form.email.value;
-    const password = form.password.value;
+    // const form = e.target;
+    // const email = data.email.value;
+    // const password = data.password.value;
 
     singInUser(email, password)
       .then((result) => {
@@ -66,7 +73,9 @@ const SignIn = () => {
       </h2>
       <div className="flex justify-center items-center text-primary mt-5 ">
         <div className="card  w-full max-w-lg shrink-0 shadow-2xl bg-[#F5F5F5]">
-          <form onSubmit={handleSignIn} className="card-body">
+  
+          <form onSubmit={handleSubmit(handleSignIn)} className="card-body">
+            {/* Email Field */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -74,11 +83,17 @@ const SignIn = () => {
               <input
                 type="email"
                 placeholder="email"
-                name="email"
+                {...register("email", { required: "Email is required" })}
                 className="input input-bordered"
-                required
               />
+              {errors.email && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.email.message}
+                </p>
+              )}
             </div>
+
+            {/* Password Field */}
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -86,31 +101,52 @@ const SignIn = () => {
               <input
                 type="password"
                 placeholder="password"
-                name="password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters long",
+                  },
+                })}
                 className="input input-bordered"
-                required
               />
+              {errors.password && (
+                <p className="text-red-600 text-sm mt-1">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
+
+            {/* Submit Button */}
             <div className="form-control mt-6">
-              <button className="btn bg-secondary text-white hover:bg-accent">
+              <button
+                type="submit"
+                className="btn bg-secondary text-white hover:bg-accent"
+              >
                 Sign In
               </button>
             </div>
+
+            {/* Redirect to Sign Up */}
             <p className="text-center font-bold">
-              New in this website? ? please{" "}
+              New in this website? Please{" "}
               <Link className="text-red-600 underline" to="/signup">
                 Sign Up
-              </Link>{" "}
+              </Link>
             </p>
-            <div className="flex  text-text mt-5 items-center justify-center">
+
+            {/* Google Sign-In Button */}
+            <div className="flex text-text mt-5 items-center justify-center">
               <button
-                className="px-5 py-3 rounded-sm bg-secondary hover:bg-accent "
+                type="button"
+                className="px-5 py-3 rounded-sm bg-secondary hover:bg-accent"
                 onClick={handleGoogleSignIn}
               >
                 Sign In With Google
               </button>
             </div>
           </form>
+
         </div>
       </div>
     </div>

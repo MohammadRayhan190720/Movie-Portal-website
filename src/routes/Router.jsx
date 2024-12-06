@@ -9,11 +9,13 @@ import MyFavourites from "../pages/MyFavourites";
 import AllUpcomeing from "../pages/AllUpcomeing";
 import PrivateRoute from "./PrivateRoute";
 import MovieDetails from "../pages/MovieDetails";
+import ErrorPage from "../components/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",

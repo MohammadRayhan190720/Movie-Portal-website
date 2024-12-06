@@ -1,11 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { MdOutlineMovieFilter } from "react-icons/md";
 import { TbTimeDuration5 } from "react-icons/tb";
 import { MdOutlineNewReleases } from "react-icons/md";
 import { FcRating } from "react-icons/fc";
 import { AiFillDelete } from "react-icons/ai";
 import { SlLike } from "react-icons/sl";
-
+import Swal from "sweetalert2";
 
 
 
@@ -14,10 +14,12 @@ import { SlLike } from "react-icons/sl";
 
 
 const MovieDetails = () => {
+  const navigate = useNavigate();
 
   const data = useLoaderData();
 
   const {
+    _id,
     movieposter,
     movietitle,
     genres,
@@ -27,6 +29,47 @@ const MovieDetails = () => {
     summary,
   } = data;
   
+
+  const handleMovieDelete = id =>{
+    console.log(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+            fetch(`http://localhost:5000/movies/status/${id}`, {
+              method: "DELETE",
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                // console.log(data);
+                if (data.deletedCount === 1) {
+                          Swal.fire({
+                            title: "Deleted!",
+                            text: "Movie has been deleted",
+                            icon: "success",
+                          });
+                          navigate("/allMovies");
+                          return;
+                }
+              });
+
+
+      }
+    });
+
+
+  }
+
+
+
   return (
     <div className="card lg:flex-row gap-5  justify-center  max-w-5xl mx-auto shadow-xl mt-8 lg:mt-12 p-5 font-Montserrat bg-gradient-to-b from-[#2C3E50] to-[#4A69BD] text-white">
       <div className="w-full h-screen">
@@ -81,7 +124,7 @@ const MovieDetails = () => {
             <SlLike />
             Add To Favourite
           </button>
-          <button className="px-5 py-3 bg-secondary flex items-center gap-3 ">
+          <button onClick={()=>{handleMovieDelete(_id)}} className="px-5 py-3 bg-secondary flex items-center gap-3 ">
             <AiFillDelete />
             Delete Movie
           </button>
