@@ -8,12 +8,15 @@ const Navbar = () => {
   const { user, handleSignOut } = useContext(AuthContext);
   console.log(user)
 
+  const email = user?.email;
+  console.log(email)
+
   const links = (
     <>
       <NavLink className='mr-5 py-3 flex items-center' to="/">Home</NavLink>
       <NavLink className='mr-5 py-3 flex items-center' to="/allMovies">All Movies</NavLink>
       <NavLink className='mr-5 py-3 flex items-center' to="/addmovies">Add Movie</NavLink>
-      <NavLink className='mr-5 py-3 flex items-center' to='/favourites'>My Favorites</NavLink>
+      <NavLink className='mr-5 py-3 flex items-center' to={`/favouriteMovies/${email}`}>My Favorites</NavLink>
       <NavLink className='mr-5 py-3 flex items-center' to="/allupcomeing">UpComeing Movies</NavLink>
     </>
   );

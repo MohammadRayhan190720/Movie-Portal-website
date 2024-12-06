@@ -20,6 +20,7 @@ const MovieDetails = () => {
 
   const email = user?.email;
   console.log(email);
+const userWithEmail = {...data,email};
 
 
   const {
@@ -141,7 +142,7 @@ const MovieDetails = () => {
         <div className="flex items-center justify-center gap-5 mt-6 lg:mt-8">
           <button
             onClick={() => {
-              handleAddFavourite(data);
+              handleAddFavourite(userWithEmail);
             }}
             className="px-5 py-3 bg-accent focus:bg-orange-400 flex items-center gap-3"
           >

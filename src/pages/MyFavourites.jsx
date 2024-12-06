@@ -1,10 +1,13 @@
 import { useLoaderData } from "react-router-dom";
-import FeaturedMovieCard from "../components/FeaturedMovieCard";
+import FavMovieCard from "../components/FavMovieCard";
+import { useState } from "react";
 
 const MyFavourites = () => {
 
   const favMoviesData = useLoaderData();
-  console.log(favMoviesData);
+
+  const [favouriteMovie, setFavouriteMovie] = useState(favMoviesData);
+
   return (
     <div className="mt-10 lg:mt-16 max-w-7xl mx-auto">
       <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl lg:text-5xl">
@@ -17,11 +20,14 @@ const MyFavourites = () => {
       </p>
 
       <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {favMoviesData.map((movieData) => (
-          <FeaturedMovieCard
+        {favouriteMovie.map((movieData) => (
+          <FavMovieCard
             key={movieData._id}
             movieData={movieData}
-          ></FeaturedMovieCard>
+            setFavouriteMovie={setFavouriteMovie}
+            favouriteMovie={favouriteMovie}
+            mov
+          ></FavMovieCard>
         ))}
       </div>
     </div>
