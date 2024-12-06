@@ -6,6 +6,8 @@ import { FcRating } from "react-icons/fc";
 import { AiFillDelete } from "react-icons/ai";
 import { SlLike } from "react-icons/sl";
 import Swal from "sweetalert2";
+import { CiEdit } from "react-icons/ci";
+
 
 
 
@@ -119,12 +121,24 @@ const MovieDetails = () => {
           </p>
         </div>
         <div className="flex items-center justify-center gap-5 mt-6 lg:mt-8">
-          <button className="px-5 py-3 bg-secondary flex items-center gap-3">
+          <button className="px-5 py-3 bg-accent focus:bg-orange-400 flex items-center gap-3">
             {" "}
             <SlLike />
             Add To Favourite
           </button>
-          <button onClick={()=>{handleMovieDelete(_id)}} className="px-5 py-3 bg-secondary flex items-center gap-3 ">
+          <Link to={`/updatemovies/${_id}`} className="px-5 py-3 bg-green-600 flex items-center gap-3 focus:bg-green-950">
+            {" "}
+            <CiEdit />
+            Update Movie
+          </Link>
+        </div>
+        <div className="flex items-center justify-center mt-6">
+          <button
+            onClick={() => {
+              handleMovieDelete(_id);
+            }}
+            className="px-5 py-3 bg-secondary flex items-center gap-3 focus:bg-accent "
+          >
             <AiFillDelete />
             Delete Movie
           </button>

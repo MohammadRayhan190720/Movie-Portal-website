@@ -10,12 +10,13 @@ import AllUpcomeing from "../pages/AllUpcomeing";
 import PrivateRoute from "./PrivateRoute";
 import MovieDetails from "../pages/MovieDetails";
 import ErrorPage from "../components/ErrorPage";
+import UpdateMovie from "../pages/UpdateMovie";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -50,7 +51,18 @@ const router = createBrowserRouter([
             <MovieDetails></MovieDetails>
           </PrivateRoute>
         ),
-        loader: ({params}) => fetch(`http://localhost:5000/movies/status/${params.id}`),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/movies/status/${params.id}`),
+      },
+      {
+        path: "/updatemovies/:id",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <UpdateMovie></UpdateMovie>{" "}
+          </PrivateRoute>
+        ),
+        loader: ({params}) =>fetch(`http://localhost:5000/movies/status/${params.id}`),
       },
       {
         path: "/allupcomeing",
