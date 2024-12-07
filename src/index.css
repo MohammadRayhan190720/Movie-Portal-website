@@ -17,3 +17,15 @@
 svg.star-svg{
   display: inline;
 }
+
+/* Light Theme */
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Dark Theme */
+body.dark-mode {
+  background-color: #1C1C1C;
+  color: #FDFEFE;
+}

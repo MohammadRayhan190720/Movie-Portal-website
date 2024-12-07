@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import Logo from '../assets/images/logo-2.webp'
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
 
@@ -51,14 +52,21 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-3">
+        
+        <ThemeToggle></ThemeToggle>
+
         {user && user.email ? (
           <div className="flex gap-5 items-center">
-            <img className="w-16 h-16 rounded-full"
+            <img
+              className="w-16 h-16 rounded-full"
               title={user?.displayName}
               src={user?.photoURL}
               alt={user?.displayName}
             />
-            <button onClick={handleSignOut} className="bg-[#ff7043] px-5 py-3 rounded-lg">
+            <button
+              onClick={handleSignOut}
+              className="bg-[#ff7043] px-5 py-3 rounded-lg"
+            >
               Sign Out
             </button>
           </div>

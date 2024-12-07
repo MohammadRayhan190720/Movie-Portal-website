@@ -2,6 +2,7 @@
 import daisyui from "daisyui";
 
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
@@ -12,11 +13,11 @@ export default {
         background: "#1C1C1C",
         text: "#FDFEFE",
       },
-      fontFamily:{
-        'Nunito':[ "Nunito", "sans-serif"],
-        'Montserrat': ["Montserrat", "sans-serif"],
-        'Cinzel': [ "Cinzel Decorative", "serif"]
-      }
+      fontFamily: {
+        Nunito: ["Nunito", "sans-serif"],
+        Montserrat: ["Montserrat", "sans-serif"],
+        Cinzel: ["Cinzel Decorative", "serif"],
+      },
     },
   },
   plugins: [daisyui],

@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 
 const Root = () => {
   return (
-    <div className="text-text font-Nunito bg-background ">
+    <div className="text-text font-Nunito ">
         <Navbar></Navbar>
       {/* <div className="max-w-7xl mx-auto"> */}
         <Outlet></Outlet>

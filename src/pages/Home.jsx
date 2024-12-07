@@ -3,6 +3,7 @@ import Banner from "../components/Banner";
 import Faq from "../components/Faq";
 import UpComeingMovies from "../components/UpComeingMovies";
 import FeaturedMovies from "../components/FeaturedMovies";
+import ThemeToggle from "../components/ThemeToggle";
 
 const Home = () => {
 
@@ -15,6 +16,7 @@ const Home = () => {
       <FeaturedMovies moviesData={moviesData}></FeaturedMovies>
       <UpComeingMovies></UpComeingMovies>
       <Faq></Faq>
+      
     </div>
   );
 };
