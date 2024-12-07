@@ -73,7 +73,6 @@ const SignIn = () => {
       </h2>
       <div className="flex justify-center items-center text-primary mt-5 ">
         <div className="card  w-full max-w-lg shrink-0 shadow-2xl bg-[#F5F5F5]">
-  
           <form onSubmit={handleSubmit(handleSignIn)} className="card-body">
             {/* Email Field */}
             <div className="form-control">
@@ -115,6 +114,11 @@ const SignIn = () => {
                   {errors.password.message}
                 </p>
               )}
+              <label className="label">
+                <a href="#" className="label-text-alt link link-hover">
+                  Forgot password?
+                </a>
+              </label>
             </div>
 
             {/* Submit Button */}
@@ -146,7 +150,6 @@ const SignIn = () => {
               </button>
             </div>
           </form>
-
         </div>
       </div>
     </div>
