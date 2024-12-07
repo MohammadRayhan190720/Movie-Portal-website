@@ -10,18 +10,16 @@ import { CiEdit } from "react-icons/ci";
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
 
-
 const MovieDetails = () => {
   const navigate = useNavigate();
 
   const data = useLoaderData();
 
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const email = user?.email;
   // console.log(email);
-const userWithEmail = {...data,email};
-
+  const userWithEmail = { ...data, email };
 
   const {
     _id,
@@ -47,7 +45,7 @@ const userWithEmail = {...data,email};
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/movies/status/${id}`, {
+        fetch(`https://cineverse-server.vercel.app/movies/status/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -72,7 +70,7 @@ const userWithEmail = {...data,email};
   const handleAddFavourite = (data) => {
     // console.log(data);
 
-    fetch("http://localhost:5000/favouriteMovies", {
+    fetch("https://cineverse-server.vercel.app/favouriteMovies", {
       method: "POST",
       headers: {
         "content-type": "application/json",

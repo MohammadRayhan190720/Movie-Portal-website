@@ -1,49 +1,43 @@
-import { useContext,  useState } from "react";
+import { useContext, useState } from "react";
 import { Rating } from "react-simple-star-rating";
 import Swal from "sweetalert2";
 import { AuthContext } from "../provider/AuthProvider";
 
 const AddMovie = () => {
-
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const email = user?.email;
   // console.log(email)
 
-    const [selectedGenres, setSelectedGenres] = useState([]);
-    const[releaseYear,setReleaseYear] = useState("");
-    const[rating,setRating] = useState(0);
-    // const [email, setEmail] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [releaseYear, setReleaseYear] = useState("");
+  const [rating, setRating] = useState(0);
+  // const [email, setEmail] = useState("");
 
+  const handleGenreChange = (event) => {
+    const options = event.target.selectedOptions; // Get selected options
+    const selectedValues = Array.from(options).map((option) => option.value); // Create an array of selected values
+    setSelectedGenres(selectedValues); // Update state with selected genres
+  };
 
-    const handleGenreChange = (event) => {
-      const options = event.target.selectedOptions; // Get selected options
-      const selectedValues = Array.from(options).map((option) => option.value); // Create an array of selected values
-      setSelectedGenres(selectedValues); // Update state with selected genres
-    };
+  const handleYearChange = (event) => {
+    setReleaseYear(event.target.value);
+  };
 
-    const handleYearChange = event =>{
-      setReleaseYear(event.target.value)
+  //handlerating
 
-    }
-
-    //handlerating
-
-    const handleRatingChange = (rate) =>{
-      setRating(rate)
-    }
-
-
+  const handleRatingChange = (rate) => {
+    setRating(rate);
+  };
 
   const handleAddMovie = (e) => {
     e.preventDefault();
 
     const form = e.target;
-    
 
     const movieposter = form.movieposter.value;
     const movietitle = form.movietitle.value;
-    if(movietitle.length < 2){
+    if (movietitle.length < 2) {
       Swal.fire({
         icon: "error",
         title: "Invalid Movie Title",
@@ -56,62 +50,56 @@ const AddMovie = () => {
     const release = releaseYear;
     const ratings = rating;
 
-    if(ratings == 0){
-            Swal.fire({
-              icon: "error",
-              title: "Invalid",
-              text: "Please Rating the Movie",
-            });
-            return;
-
+    if (ratings == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid",
+        text: "Please Rating the Movie",
+      });
+      return;
     }
     const summary = form.summary.value;
 
-    if(summary.length < 10){
-            Swal.fire({
-              icon: "error",
-              title: "Invalid Movie Summary",
-              text: "Summary must be at least 10 characters",
-            });
-            return;
+    if (summary.length < 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Movie Summary",
+        text: "Summary must be at least 10 characters",
+      });
+      return;
     }
 
     // console.log(movietitle,movieposter,genres,release,ratings,summary);
-     const newMovies = {
-       movieposter,
-       movietitle,
-       duration,
-       genres,
-       release,
-       ratings,
-       summary,
-       email,
-     };
+    const newMovies = {
+      movieposter,
+      movietitle,
+      duration,
+      genres,
+      release,
+      ratings,
+      summary,
+      email,
+    };
     //send data to database
 
-    fetch("http://localhost:5000/movies",{
+    fetch("https://cineverse-server.vercel.app/movies", {
       method: "POST",
       headers: {
-        'content-type' : 'application/json'
+        "content-type": "application/json",
       },
-      body: JSON.stringify(newMovies)
+      body: JSON.stringify(newMovies),
     })
-    .then(res => res.json())
-    .then(data => {
-      if (data.insertedId){
-        Swal.fire({
-          title: "Success",
-          text: "Movie inserted successfully",
-          icon: "success",
-          confirmButtonText: "Cool",
-        });
-
-      }
-    })
-
-
-
-
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success",
+            text: "Movie inserted successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
   return (
     <div className="mt-6 lg:mt-10">

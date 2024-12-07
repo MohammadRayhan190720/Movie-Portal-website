@@ -3,11 +3,10 @@ import { GiDuration } from "react-icons/gi";
 import { MdMovieFilter } from "react-icons/md";
 import { IoIosHeartDislike } from "react-icons/io";
 import Swal from "sweetalert2";
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 const FavMovieCard = ({ movieData, favouriteMovie, setFavouriteMovie }) => {
   const { movieposter, movietitle, genres, release, _id, duration, ratings } =
     movieData;
-
 
   const handleFavDelete = (id) => {
     // console.log("fav deleted id", id);
@@ -24,7 +23,7 @@ const FavMovieCard = ({ movieData, favouriteMovie, setFavouriteMovie }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/favouriteMovies/${id}`, {
+        fetch(`https://cineverse-server.vercel.app/favouriteMovies/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -37,11 +36,12 @@ const FavMovieCard = ({ movieData, favouriteMovie, setFavouriteMovie }) => {
                 icon: "success",
               });
 
-              const remainingMovies = favouriteMovie.filter(movie => movie._id !== id);
+              const remainingMovies = favouriteMovie.filter(
+                (movie) => movie._id !== id
+              );
 
               setFavouriteMovie(remainingMovies);
             }
-          
           });
       }
     });

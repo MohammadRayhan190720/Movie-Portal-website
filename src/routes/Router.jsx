@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-        loader: () => fetch("http://localhost:5000/movies"),
+        loader: () => fetch("https://cineverse-server.vercel.app/movies"),
       },
       {
         path: "/addmovies",
@@ -34,7 +34,8 @@ const router = createBrowserRouter([
       {
         path: "/allMovies",
         element: <AllMovies></AllMovies>,
-        loader: () => fetch("http://localhost:5000/movies/status"),
+        loader: () =>
+          fetch("https://cineverse-server.vercel.app/movies/status"),
       },
       {
         path: "/favouriteMovies/:email",
@@ -44,7 +45,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/favouriteMovies/${params.email}`),
+          fetch(
+            `https://cineverse-server.vercel.app/favouriteMovies/${params.email}`
+          ),
       },
       {
         path: "/movieDetails/:id",
@@ -54,7 +57,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/movies/status/${params.id}`),
+          fetch(
+            `https://cineverse-server.vercel.app/movies/status/${params.id}`
+          ),
       },
       {
         path: "/updatemovies/:id",
@@ -65,12 +70,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/movies/status/${params.id}`),
+          fetch(
+            `https://cineverse-server.vercel.app/movies/status/${params.id}`
+          ),
       },
       {
         path: "/allupcomeing",
         element: <AllUpcomeing></AllUpcomeing>,
-        loader: () => fetch("http://localhost:5000/allupcomeing"),
+        loader: () => fetch("https://cineverse-server.vercel.app/allupcomeing"),
       },
     ],
   },

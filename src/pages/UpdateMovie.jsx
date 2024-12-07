@@ -5,7 +5,6 @@ import Swal from "sweetalert2";
 import { Rating } from "react-simple-star-rating";
 
 const UpdateMovie = () => {
-
   const loadedMovie = useLoaderData();
   const {
     _id,
@@ -18,114 +17,103 @@ const UpdateMovie = () => {
     summary,
   } = loadedMovie;
 
-    const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-    const email = user?.email;
+  const email = user?.email;
 
-      const [selectedGenres, setSelectedGenres] = useState([]);
-      const [releaseYear, setReleaseYear] = useState("");
-      const [rating, setRating] = useState(0);
-      // const [email, setEmail] = useState("");
+  const [selectedGenres, setSelectedGenres] = useState([]);
+  const [releaseYear, setReleaseYear] = useState("");
+  const [rating, setRating] = useState(0);
+  // const [email, setEmail] = useState("");
 
-      const handleGenreChange = (event) => {
-        const options = event.target.selectedOptions; // Get selected options
-        const selectedValues = Array.from(options).map(
-          (option) => option.value
-        ); // Create an array of selected values
-        setSelectedGenres(selectedValues); // Update state with selected genres
-      };
+  const handleGenreChange = (event) => {
+    const options = event.target.selectedOptions; // Get selected options
+    const selectedValues = Array.from(options).map((option) => option.value); // Create an array of selected values
+    setSelectedGenres(selectedValues); // Update state with selected genres
+  };
 
-      const handleYearChange = (event) => {
-        setReleaseYear(event.target.value);
-      };
+  const handleYearChange = (event) => {
+    setReleaseYear(event.target.value);
+  };
 
-      //handlerating
+  //handlerating
 
-      const handleRatingChange = (rate) => {
-        setRating(rate);
-      };
+  const handleRatingChange = (rate) => {
+    setRating(rate);
+  };
 
-
-
-
-  const handleUpdateMovie = e =>{
+  const handleUpdateMovie = (e) => {
     e.preventDefault();
 
+    const form = e.target;
 
-     const form = e.target;
+    const movieposter = form.movieposter.value;
+    const movietitle = form.movietitle.value;
+    if (movietitle.length < 2) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Movie Title",
+        text: "Title must be at least 2 characters",
+      });
+      return;
+    }
+    const genres = selectedGenres;
+    const duration = form.duration.value;
+    const release = releaseYear;
+    const ratings = rating;
 
-     const movieposter = form.movieposter.value;
-     const movietitle = form.movietitle.value;
-     if (movietitle.length < 2) {
-       Swal.fire({
-         icon: "error",
-         title: "Invalid Movie Title",
-         text: "Title must be at least 2 characters",
-       });
-       return;
-     }
-     const genres = selectedGenres;
-     const duration = form.duration.value;
-     const release = releaseYear;
-     const ratings = rating;
+    if (ratings == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid",
+        text: "Please Rating the Movie",
+      });
+      return;
+    }
+    const summary = form.summary.value;
 
-     if (ratings == 0) {
-       Swal.fire({
-         icon: "error",
-         title: "Invalid",
-         text: "Please Rating the Movie",
-       });
-       return;
-     }
-     const summary = form.summary.value;
+    if (summary.length < 10) {
+      Swal.fire({
+        icon: "error",
+        title: "Invalid Movie Summary",
+        text: "Summary must be at least 10 characters",
+      });
+      return;
+    }
 
-     if (summary.length < 10) {
-       Swal.fire({
-         icon: "error",
-         title: "Invalid Movie Summary",
-         text: "Summary must be at least 10 characters",
-       });
-       return;
-     }
+    // console.log(movietitle,movieposter,genres,release,ratings,summary);
+    const UpdateMovie = {
+      movieposter,
+      movietitle,
+      duration,
+      genres,
+      release,
+      ratings,
+      summary,
+      email,
+    };
 
-     // console.log(movietitle,movieposter,genres,release,ratings,summary);
-     const UpdateMovie = {
-       movieposter,
-       movietitle,
-       duration,
-       genres,
-       release,
-       ratings,
-       summary,
-       email,
-     };
-         
     //  update to the server
-        fetch(
-          `http://localhost:5000/movies/status/${_id}`,
-          {
-            method: "PUT",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(UpdateMovie),
-          }
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log("response form server", data);
-            if (data.modifiedCount) {
-              Swal.fire({
-                title: "Success",
-                text: "Movie updated successfully",
-                icon: "success",
-                confirmButtonText: "Cool",
-              });
-            }
+    fetch(`https://cineverse-server.vercel.app/movies/status/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(UpdateMovie),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log("response form server", data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            title: "Success",
+            text: "Movie updated successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
           });
-
-
-  }
+        }
+      });
+  };
   return (
     <div className="mt-6 lg:mt-10">
       <div className="hero  max-w-7xl mx-auto min-h-screen bg-gradient-to-b from-background to-primary">

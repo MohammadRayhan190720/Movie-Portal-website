@@ -6,22 +6,23 @@ const AllMovies = () => {
   const allMovies = useLoaderData();
   // console.log(allMovies);
 
-  const [moviesData,setMoviesData]= useState(allMovies);
+  const [moviesData, setMoviesData] = useState(allMovies);
 
-  const [search,setSearch] = useState('');
+  const [search, setSearch] = useState("");
   // console.log(search)
 
   //fetch data for search
 
-  useEffect(() =>{
-    fetch(`http://localhost:5000/movies/status?searchParams=${search}`)
-    .then(res => res.json())
-    .then(data =>{
-      setMoviesData(data);
-    })
+  useEffect(() => {
+    fetch(
+      `https://cineverse-server.vercel.app/movies/status?searchParams=${search}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setMoviesData(data);
+      });
+  }, [search]);
 
-  },[search])
-  
   return (
     <div className="mt-10 lg:mt-16 max-w-7xl mx-auto">
       <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl lg:text-5xl">
