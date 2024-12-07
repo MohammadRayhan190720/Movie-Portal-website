@@ -43,29 +43,34 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          ></ul>
+            className="menu menu-sm dropdown-content bg-base-200 text-black rounded-md font-semibold space-y-8 z-50 mt-5 w-40 p-2 shadow border"
+          >
+            {links}
+          </ul>
         </div>
-        <img className="w-20 h-20 rounded-full" src={Logo} alt="logo" />
+        <img
+          className="w-20 h-20 rounded-full invisible md:visible"
+          src={Logo}
+          alt="logo"
+        />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-3">
-
         <ThemeToggle></ThemeToggle>
 
         {user && user.email ? (
           <div className="flex gap-5 items-center">
             <img
-              className="w-16 h-16 rounded-full"
+              className=" w-10 h-10  md:w-16 md:h-16 rounded-full"
               title={user?.displayName}
               src={user?.photoURL}
               alt={user?.displayName}
             />
             <button
               onClick={handleSignOut}
-              className="bg-[#ff7043] px-5 py-3 rounded-lg"
+              className="bg-[#ff7043] px-3 py-1 md:px-5 md:py-3 rounded-lg flex"
             >
               Sign Out
             </button>

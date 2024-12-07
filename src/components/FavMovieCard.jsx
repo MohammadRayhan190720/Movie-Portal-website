@@ -99,7 +99,7 @@ const FavMovieCard = ({ movieData, favouriteMovie, setFavouriteMovie }) => {
               onClick={() => {
                 handleFavDelete(_id);
               }}
-              className="px-5 py-3 rounded-xl bg-secondary focus:bg-accent flex items-center gap-3"
+              className="px-5 py-3 rounded-xl bg-secondary focus:bg-accent flex items-center gap-3 text-text"
             >
               <IoIosHeartDislike />
               Delete Favourite

@@ -33,7 +33,7 @@ const AllMovies = () => {
         Your ultimate movie portal awaits exploration!
       </p>
 
-      <div className=" flex items-center justify-center mt-4">
+      <div className=" flex items-center justify-center mt-4 text-black">
         <label className="input input-bordered flex items-center gap-2">
           <input
             onChange={(e) => setSearch(e.target.value)}

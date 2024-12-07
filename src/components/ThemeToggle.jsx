@@ -11,7 +11,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className={`px-4 py-2 rounded-lg transition-all duration-300 ${
+      className={`px-2 py-1 md:px-4 md:py-2 rounded-lg transition-all duration-300 ${
         isDarkMode
           ? "bg-gray-800 text-white hover:bg-gray-600"
           : "bg-yellow-500 text-black hover:bg-yellow-400"

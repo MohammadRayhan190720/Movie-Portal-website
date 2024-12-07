@@ -25,7 +25,7 @@ const FeaturedMovies = ({moviesData}) => {
         ))}
       </div>
 
-      <div className="text-center mt-8 lg:mt-10">
+      <div className="text-center mt-8 lg:mt-10 text-text">
         <Link to='/allMovies' className="px-5 py-3 rounded-xl bg-secondary">See All Movies</Link>
       </div>
     </div>
