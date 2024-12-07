@@ -7,10 +7,10 @@ import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
 
   const { user, handleSignOut } = useContext(AuthContext);
-  console.log(user)
+  // console.log(user)
 
   const email = user?.email;
-  console.log(email)
+  // console.log(email)
 
   const links = (
     <>

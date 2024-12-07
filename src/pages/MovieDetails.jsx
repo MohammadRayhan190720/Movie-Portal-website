@@ -19,7 +19,7 @@ const MovieDetails = () => {
   const {user} = useContext(AuthContext);
 
   const email = user?.email;
-  console.log(email);
+  // console.log(email);
 const userWithEmail = {...data,email};
 
 
@@ -35,7 +35,7 @@ const userWithEmail = {...data,email};
   } = data;
 
   const handleMovieDelete = (id) => {
-    console.log(id);
+    // console.log(id);
 
     Swal.fire({
       title: "Are you sure?",
@@ -70,7 +70,7 @@ const userWithEmail = {...data,email};
   //add to favourite
 
   const handleAddFavourite = (data) => {
-    console.log(data);
+    // console.log(data);
 
     fetch("http://localhost:5000/favouriteMovies", {
       method: "POST",

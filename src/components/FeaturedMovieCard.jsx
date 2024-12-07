@@ -2,11 +2,12 @@ import { MdMovieFilter } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { GiDuration } from "react-icons/gi";
 import { FcRating } from "react-icons/fc";
+import PropTypes from "prop-types"; 
 
 
 
 const FeaturedMovieCard = ({ movieData }) => {
-  console.log(movieData);
+  // console.log(movieData);
   const { movieposter, movietitle, genres, release,_id,duration,ratings } = movieData;
   return (
     <div>
@@ -66,6 +67,10 @@ const FeaturedMovieCard = ({ movieData }) => {
       </div>
     </div>
   );
+};
+
+FeaturedMovieCard.propTypes = {
+  movieData: PropTypes.object.isRequired,
 };
 
 export default FeaturedMovieCard;

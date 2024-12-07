@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 const AllMovies = () => {
   const allMovies = useLoaderData();
-  console.log(allMovies);
+  // console.log(allMovies);
 
   const [moviesData,setMoviesData]= useState(allMovies);
 
   const [search,setSearch] = useState('');
-  console.log(search)
+  // console.log(search)
 
   //fetch data for search
 

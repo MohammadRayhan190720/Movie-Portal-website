@@ -1,6 +1,5 @@
-
-const UpcomeingMovieCard = ({singleData}) => {
-
+import PropTypes from "prop-types";
+const UpcomeingMovieCard = ({ singleData }) => {
   const { moviePoster, movieTitle, genre } = singleData;
   return (
     <div className="card card-compact bg-gradient-to-r from-background to-primary  shadow-xl mt-6 lg:mt-10 transition-transform duration-1000 ease-in-out transform hover:scale-105 opacity-90 hover:opacity-100 border">
@@ -22,6 +21,9 @@ const UpcomeingMovieCard = ({singleData}) => {
       </div>
     </div>
   );
+};
+UpcomeingMovieCard.propTypes = {
+  singleData: PropTypes.object.isRequired,
 };
 
 export default UpcomeingMovieCard;

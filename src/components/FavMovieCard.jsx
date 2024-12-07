@@ -3,15 +3,14 @@ import { GiDuration } from "react-icons/gi";
 import { MdMovieFilter } from "react-icons/md";
 import { IoIosHeartDislike } from "react-icons/io";
 import Swal from "sweetalert2";
-import { useState } from "react";
-
+import PropTypes from "prop-types"; 
 const FavMovieCard = ({ movieData, favouriteMovie, setFavouriteMovie }) => {
   const { movieposter, movietitle, genres, release, _id, duration, ratings } =
     movieData;
 
 
   const handleFavDelete = (id) => {
-    console.log("fav deleted id", id);
+    // console.log("fav deleted id", id);
 
     //delete form database
 
@@ -30,7 +29,7 @@ const FavMovieCard = ({ movieData, favouriteMovie, setFavouriteMovie }) => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount === 1) {
               Swal.fire({
                 title: "Deleted From Favourite List",
@@ -109,6 +108,12 @@ const FavMovieCard = ({ movieData, favouriteMovie, setFavouriteMovie }) => {
       </div>
     </div>
   );
+};
+
+FavMovieCard.propTypes = {
+  movieData: PropTypes.array.isRequired,
+  favouriteMovie: PropTypes.array.isRequired,
+  setFavouriteMovie: PropTypes.func.isRequired,
 };
 
 export default FavMovieCard;
