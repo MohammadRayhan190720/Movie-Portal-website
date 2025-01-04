@@ -31,7 +31,7 @@ const Banner = () => {
           <img
             src={slider1}
             alt="Movie 1"
-            className="w-full h-96   rounded-lg"
+            className="w-full h-96 object-cover rounded-lg"
           />
         </SwiperSlide>
         <SwiperSlide>
