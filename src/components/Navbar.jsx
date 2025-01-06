@@ -16,13 +16,19 @@ const Navbar = () => {
     <>
       <NavLink className='mr-5 py-3 flex items-center' to="/">Home</NavLink>
       <NavLink className='mr-5 py-3 flex items-center' to="/allMovies">All Movies</NavLink>
-      <NavLink className='mr-5 py-3 flex items-center' to="/addmovies">Add Movie</NavLink>
-      <NavLink className='mr-5 py-3 flex items-center' to={`/favouriteMovies/${email}`}>My Favorites</NavLink>
+      {
+        user &&  <NavLink className='mr-5 py-3 flex items-center' to="/addmovies">Add Movie</NavLink>
+      }
+      {
+        user && <NavLink className='mr-5 py-3 flex items-center' to={`/favouriteMovies/${email}`}>My Favorites</NavLink>
+      }
       <NavLink className='mr-5 py-3 flex items-center' to="/allupcomeing">UpComeing Movies</NavLink>
+      <NavLink className='mr-5 py-3 flex items-center' to="/aboutus">About Us</NavLink>
+      <NavLink className='mr-5 py-3 flex items-center' to="/support">Support</NavLink>
     </>
   );
   return (
-    <div className="navbar bg-primary px-10 text-text">
+    <div className="navbar bg-primary px-10 text-text fixed top-0 w-full z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -66,6 +72,7 @@ const Navbar = () => {
               className=" w-10 h-10  md:w-16 md:h-16 rounded-full"
               title={user?.displayName}
               src={user?.photoURL}
+              referrerPolicy="no-referrer"
               alt={user?.displayName}
             />
             <button

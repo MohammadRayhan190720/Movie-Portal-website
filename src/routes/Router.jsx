@@ -11,6 +11,8 @@ import PrivateRoute from "./PrivateRoute";
 import MovieDetails from "../pages/MovieDetails";
 import ErrorPage from "../components/ErrorPage";
 import UpdateMovie from "../pages/UpdateMovie";
+import AboutUs from "../pages/AboutUs";
+import Support from "../pages/Support";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +81,15 @@ const router = createBrowserRouter([
         element: <AllUpcomeing></AllUpcomeing>,
         loader: () => fetch("https://cineverse-server.vercel.app/allupcomeing"),
       },
+      {
+        path: '/aboutus',
+        element: <AboutUs></AboutUs>
+      },
+      {
+        path: '/support',
+        element: <Support></Support>
+        
+      }
     ],
   },
   {
