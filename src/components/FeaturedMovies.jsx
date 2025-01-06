@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const FeaturedMovies = ({ moviesData }) => {
   // console.log(moviesData);
   return (
-    <div className="mt-10 lg:mt-16 max-w-7xl mx-auto">
+    <div className="mt-5 max-w-7xl mx-auto">
       <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl lg:text-5xl">
         Featured Movies
       </h2>

@@ -19,9 +19,9 @@ const FeaturedMovieCard = ({ movieData }) => {
           <div className="flex justify-between items-center">
             <h2 title={movietitle} className="text-lg font-bold text-text">
               {movietitle.slice(0, 13)}
-              <div className="badge bg-secondary text-white border-none ml-2">
+              {/* <div className="badge bg-secondary text-white border-none ml-2">
                 {release}
-              </div>
+              </div> */}
             </h2>
             <div className="">
               <p className="text-[#B0BEC5]">
