@@ -16,7 +16,7 @@ const links = (
   <>
     <NavLink
       className={({ isActive }) =>
-        `mr-5 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+        `mr-3 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
           isActive
             ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
             : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
@@ -28,7 +28,7 @@ const links = (
     </NavLink>
     <NavLink
       className={({ isActive }) =>
-        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+        ` mr-3 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
           isActive
             ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
             : " text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
@@ -41,7 +41,7 @@ const links = (
     {user && (
       <NavLink
         className={({ isActive }) =>
-          ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+          ` mr-3 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
             isActive
               ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
               : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
@@ -55,7 +55,7 @@ const links = (
     {user && (
       <NavLink
         className={({ isActive }) =>
-          ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+          `mr-3 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
             isActive
               ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
               : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
@@ -68,7 +68,7 @@ const links = (
     )}
     <NavLink
       className={({ isActive }) =>
-        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+        `mr-3 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
           isActive
             ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
             : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
@@ -80,7 +80,7 @@ const links = (
     </NavLink>
     <NavLink
       className={({ isActive }) =>
-        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+        ` mr-3 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
           isActive
             ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
             : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
@@ -92,7 +92,7 @@ const links = (
     </NavLink>
     <NavLink
       className={({ isActive }) =>
-        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+        `mr-3 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
           isActive
             ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
             : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"

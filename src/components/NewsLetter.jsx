@@ -18,7 +18,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="bg-gray-900 text-white py-16 px-4 relative">
+    <section className="bg-gray-900 text-white py-16 px-4 relative mt-5 md:mt-6 lg:mt-7">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl  font-bold mb-4 font-Cinzel">
           🎬 Stay Updated with CineVerse!
