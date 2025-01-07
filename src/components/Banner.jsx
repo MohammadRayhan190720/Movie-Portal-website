@@ -9,6 +9,7 @@ import slider5 from "../assets/images/slider-5.jpg";
 import slider6 from "../assets/images/slider-6t.jpg";
 import slider7 from "../assets/images/slider-7.jpg";
 import slider8 from "../assets/images/slider-8jpg.jpg";
+import ThemeToggle from "./ThemeToggle";
 
 const Banner = () => {
   const images = [slider1, slider2, slider3, slider4, slider5,slider6,slider7,slider8];
@@ -36,6 +37,9 @@ const Banner = () => {
           </div>
         ))}
       </Carousel>
+      <div className="fixed bottom-0 right-0 z-50 p-5">
+        <ThemeToggle></ThemeToggle>
+      </div>
     </div>
   );
 };

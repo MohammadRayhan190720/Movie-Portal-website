@@ -25,8 +25,11 @@ const FeaturedMovies = ({ moviesData }) => {
       </div>
 
       <div className="text-center mt-8 lg:mt-10 text-text">
-        <Link to="/allMovies" className="px-5 py-3 rounded-xl bg-secondary">
-          See All Movies
+        <Link
+          to="/allMovies"
+          className="px-6 py-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold shadow-lg hover:shadow-xl hover:from-pink-500 hover:to-purple-500 transform hover:-translate-y-1 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-purple-300"
+        >
+          🎬 See All Movies 🎥
         </Link>
       </div>
     </div>

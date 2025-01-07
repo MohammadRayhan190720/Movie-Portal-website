@@ -2,7 +2,6 @@ import { Link, NavLink } from "react-router-dom";
 import Logo from '../assets/images/logo-2.webp'
 import { AuthContext } from "../provider/AuthProvider";
 import { useContext } from "react";
-import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
 
@@ -12,21 +11,100 @@ const Navbar = () => {
   const email = user?.email;
   // console.log(email)
 
-  const links = (
-    <>
-      <NavLink className='mr-5 py-3 flex items-center' to="/">Home</NavLink>
-      <NavLink className='mr-5 py-3 flex items-center' to="/allMovies">All Movies</NavLink>
-      {
-        user &&  <NavLink className='mr-5 py-3 flex items-center' to="/addmovies">Add Movie</NavLink>
+
+const links = (
+  <>
+    <NavLink
+      className={({ isActive }) =>
+        `mr-5 py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+          isActive
+            ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+            : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
+        }`
       }
-      {
-        user && <NavLink className='mr-5 py-3 flex items-center' to={`/favouriteMovies/${email}`}>My Favorites</NavLink>
+      to="/"
+    >
+      Home
+    </NavLink>
+    <NavLink
+      className={({ isActive }) =>
+        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+          isActive
+            ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+            : " text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
+        }`
       }
-      <NavLink className='mr-5 py-3 flex items-center' to="/allupcomeing">UpComeing Movies</NavLink>
-      <NavLink className='mr-5 py-3 flex items-center' to="/aboutus">About Us</NavLink>
-      <NavLink className='mr-5 py-3 flex items-center' to="/support">Support</NavLink>
-    </>
-  );
+      to="/allMovies"
+    >
+      All Movies
+    </NavLink>
+    {user && (
+      <NavLink
+        className={({ isActive }) =>
+          ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+            isActive
+              ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+              : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
+          }`
+        }
+        to="/addmovies"
+      >
+        Add Movie
+      </NavLink>
+    )}
+    {user && (
+      <NavLink
+        className={({ isActive }) =>
+          ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+            isActive
+              ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+              : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
+          }`
+        }
+        to={`/favouriteMovies/${email}`}
+      >
+        My Favorites
+      </NavLink>
+    )}
+    <NavLink
+      className={({ isActive }) =>
+        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+          isActive
+            ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+            : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
+        }`
+      }
+      to="/allupcomeing"
+    >
+      UpComing Movies
+    </NavLink>
+    <NavLink
+      className={({ isActive }) =>
+        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+          isActive
+            ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+            : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
+        }`
+      }
+      to="/aboutus"
+    >
+      About Us
+    </NavLink>
+    <NavLink
+      className={({ isActive }) =>
+        ` py-3 px-2 flex items-center rounded-lg transition-all duration-300 ${
+          isActive
+            ? "text-white bg-gradient-to-r from-blue-500 to-purple-500 shadow-md"
+            : "text-gray-900 lg:text-slate-200 hover:text-blue-500 hover:bg-gray-100"
+        }`
+      }
+      to="/support"
+    >
+      Support
+    </NavLink>
+  </>
+);
+
   return (
     <div className="navbar bg-primary px-10 text-text sticky top-0 w-full z-50">
       <div className="navbar-start">
@@ -64,12 +142,10 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end gap-3">
-        <ThemeToggle></ThemeToggle>
-
         {user && user.email ? (
           <div className="flex gap-5 items-center">
             <img
-              className=" w-10 h-10  md:w-16 md:h-16 rounded-full"
+              className=" w-10 h-10  md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-full"
               title={user?.displayName}
               src={user?.photoURL}
               referrerPolicy="no-referrer"
@@ -77,17 +153,23 @@ const Navbar = () => {
             />
             <button
               onClick={handleSignOut}
-              className="bg-[#ff7043] px-3 py-1 md:px-5 md:py-3 rounded-lg flex"
+              className="px-3 py-1 md:px-6 md:py-3 rounded-full font-semibold text-white bg-gradient-to-r from-orange-500 to-red-500 shadow-lg hover:shadow-xl hover:from-red-500 hover:to-orange-500 transform transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-300"
             >
               Sign Out
             </button>
           </div>
         ) : (
-          <div className="flex gap-5 items-center">
-            <Link className="bg-[#ff7043] px-5 py-3 rounded-lg" to="/signup">
+          <div className="flex gap-5 items-center justify-center">
+            <Link
+              className="px-6 py-2 md:px-8 md:py-3 rounded-full font-semibold text-white bg-gradient-to-r from-orange-500 to-red-500 shadow-lg hover:shadow-xl hover:from-red-500 hover:to-orange-500 transform transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-orange-300"
+              to="/signup"
+            >
               Sign Up
             </Link>
-            <Link className="bg-[#0097a7] px-5 py-3 rounded-lg" to="/signin">
+            <Link
+              className="px-6 py-2 md:px-8 md:py-3 rounded-full font-semibold text-white bg-gradient-to-r from-teal-500 to-cyan-500 shadow-lg hover:shadow-xl hover:from-cyan-500 hover:to-teal-500 transform transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-teal-300"
+              to="/signin"
+            >
               Sign In
             </Link>
           </div>

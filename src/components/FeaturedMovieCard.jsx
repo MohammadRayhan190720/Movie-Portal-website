@@ -55,10 +55,10 @@ const FeaturedMovieCard = ({ movieData }) => {
             </div>
           </div>
 
-          <div className="card-actions ">
+          <div className="card-actions">
             <Link
               to={`/movieDetails/${_id}`}
-              className="px-5 py-3 rounded-xl bg-accent focus:bg-secondary"
+              className="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold shadow-md hover:shadow-lg hover:from-indigo-500 hover:to-blue-600 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2"
             >
               See Details
             </Link>

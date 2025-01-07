@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -11,14 +11,18 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className={`px-2 py-1 md:px-4 md:py-2 rounded-lg transition-all duration-300 ${
+      className={`fixed bottom-4 right-4 z-50 p-3 rounded-full shadow-lg transition-all duration-300 ${
         isDarkMode
-          ? "bg-gray-800 text-white hover:bg-gray-600"
-          : "bg-yellow-500 text-black hover:bg-yellow-400"
+          ? "bg-gray-800 text-white hover:bg-gray-600 ring-2 ring-gray-500"
+          : "bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 text-white hover:shadow-xl"
       }`}
       onClick={toggleTheme}
     >
-      {isDarkMode ? "☀️" : "🌙"}
+      {isDarkMode ? (
+        <FaSun className="text-xl" />
+      ) : (
+        <FaMoon className="text-xl" />
+      )}
     </button>
   );
 };
