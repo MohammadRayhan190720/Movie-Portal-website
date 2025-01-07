@@ -8,14 +8,14 @@ import PropTypes from "prop-types";
 
 const FeaturedMovieCard = ({ movieData }) => {
   // console.log(movieData);
-  const { movieposter, movietitle, genres, release,_id,duration,ratings } = movieData;
+  const { movieposter, movietitle, genres,_id,duration,ratings } = movieData;
   return (
     <div>
       <div className="card bg-primary shadow-xl mt-8 lg:mt-12">
         <figure>
           <img src={movieposter} alt={movietitle} className="w-full h-64 " />
         </figure>
-        <div className="card-body space-y-3 font-Montserrat ">
+        <div className="card-body  font-Montserrat ">
           <div className="flex justify-between items-center">
             <h2 title={movietitle} className="text-lg font-bold text-text">
               {movietitle.slice(0, 13)}
