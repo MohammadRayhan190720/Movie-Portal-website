@@ -6,7 +6,7 @@ const Faq = () => {
   return (
     <div className="bg-background">
       <div className="mt-10 lg:mt-16 max-w-7xl mx-auto text-text py-6 lg:py-10">
-        <h3 className="font-Cinzel font-semibold  text-center  text-3xl md:text-4xl lg:text-5xl">
+        <h3 className="font-Cinzel font-semibold  text-center  text-3xl md:text-4xl">
           Frequently Asked Questions
         </h3>
         <p className=" w-1/2 mx-auto text-center mt-4">

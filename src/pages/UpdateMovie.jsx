@@ -119,7 +119,7 @@ const UpdateMovie = () => {
       <div className="hero  max-w-7xl mx-auto min-h-screen bg-gradient-to-b from-background to-primary">
         <div className="hero-content flex-col">
           <div className="text-center text-text">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-Cinzel">
+            <h1 className="text-3xl md:text-4xl font-bold font-Cinzel">
               Update Movie
             </h1>
             <p className="py-4 w-4/5 mx-auto text-xl">

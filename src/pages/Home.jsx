@@ -4,6 +4,7 @@ import Faq from "../components/Faq";
 import UpComeingMovies from "../components/UpComeingMovies";
 import FeaturedMovies from "../components/FeaturedMovies";
 import Trending from "../components/Trending";
+import Newsletter from "../components/NewsLetter";
 
 const Home = () => {
 
@@ -17,6 +18,7 @@ const Home = () => {
       <UpComeingMovies></UpComeingMovies>
       <Trending></Trending>
             <Faq></Faq>
+       <Newsletter></Newsletter>
       
     </div>
   );

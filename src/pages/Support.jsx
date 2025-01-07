@@ -1,12 +1,10 @@
-
-
 const Support = () => {
   return (
     <div className="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 py-12 px-6">
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-10">
-          <h1 className="text-4xl font-bold">Support Center</h1>
+          <h1 className="text-3xl md:text-4xl font-bold">Support Center</h1>
           <p className="text-lg mt-4">
             Have questions or need help? We're here for you! Explore FAQs, or
             reach out to our support team for personalized assistance.

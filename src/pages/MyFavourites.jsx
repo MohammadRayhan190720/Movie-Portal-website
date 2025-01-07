@@ -3,14 +3,13 @@ import FavMovieCard from "../components/FavMovieCard";
 import { useState } from "react";
 
 const MyFavourites = () => {
-
   const favMoviesData = useLoaderData();
 
   const [favouriteMovie, setFavouriteMovie] = useState(favMoviesData);
 
   return (
     <div className="mt-10 lg:mt-16 max-w-7xl mx-auto">
-      <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl lg:text-5xl">
+      <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl">
         Favourite Movies
       </h2>
       <p className=" w-1/2 mx-auto text-center mt-4">

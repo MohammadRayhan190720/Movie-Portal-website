@@ -25,7 +25,7 @@ const AllMovies = () => {
 
   return (
     <div className="mt-10 lg:mt-16 max-w-7xl mx-auto">
-      <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl lg:text-5xl">
+      <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl">
         Explore CineVerse: A World of Movies
       </h2>
       <p className=" w-4/6 mx-auto text-center mt-4">

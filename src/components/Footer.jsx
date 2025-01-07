@@ -3,12 +3,13 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 
 const Footer = () => {
   return (
-    <div className="bg-primary mt-10 lg:mt-16  ">
-      <footer className="footer text-[#B0BEC5]  px-10 py-14 ">
+    <div className="bg-primary ">
+      <footer className="footer text-[#B0BEC5]  px-10 py-16 ">
         <aside>
           <img className="w-20 h-20 rounded-full" src={Logo} alt="logo" />
 
@@ -21,17 +22,19 @@ const Footer = () => {
         </aside>
         <nav>
           <h6 className="footer-title text-text">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
+          <Link to="/allupcomeing" className="link link-hover">
+            Latest Releases
+          </Link>
+          <Link to='/allMovies' className="link link-hover">Exclusive Trailers</Link>
+          <Link to='/allMovies' className="link link-hover">Movie Reviews</Link>
+          <Link to='/allMovies' className="link link-hover">Behind-the-Scenes</Link>
         </nav>
         <nav>
           <h6 className="footer-title text-text">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <Link to='/aboutus' className="link link-hover">About us</Link>
+          <Link to='/support' className="link link-hover">Support</Link>
+          <Link to='/support' className="link link-hover">Subscribe</Link>
+          <Link to='/allMovies' className="link link-hover">View Movie</Link>
         </nav>
         <nav>
           <h6 className="footer-title text-text">Social</h6>

@@ -3,25 +3,23 @@ import UpcomeingMovieCard from "./UpcomeingMovieCard";
 import FeaturedMovieCard from "./FeaturedMovieCard";
 
 const Trending = () => {
+  const [movies, setmovies] = useState([]);
+  console.log(movies);
 
-  const [movies,setmovies] = useState([]);
-  console.log(movies)
-
-  useEffect(() =>{
+  useEffect(() => {
     fetch("https://cineverse-server.vercel.app/movies/status")
-    .then(res => res.json())
-    .then(data =>{
-    const actionMovies = data.filter((innerArray) => {
-      return innerArray.genres.includes("action")
-  });
-    setmovies(actionMovies);
-  });
-}, [])
-
+      .then((res) => res.json())
+      .then((data) => {
+        const actionMovies = data.filter((innerArray) => {
+          return innerArray.genres.includes("action");
+        });
+        setmovies(actionMovies);
+      });
+  }, []);
 
   return (
     <div className="mt-10 lg:mt-16 max-w-7xl mx-auto">
-      <h2 className="font-Cinzel font-semibold  text-center text-3xl md:text-4xl lg:text-5xl">
+      <h2 className="font-Cinzel font-bold  text-center text-3xl md:text-4xl">
         Tranding Now
       </h2>
       <p className=" w-1/2 mx-auto text-center mt-4">

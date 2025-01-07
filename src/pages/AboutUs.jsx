@@ -3,7 +3,9 @@ const AboutUs = () => {
   return (
     <div className="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200 py-12 px-6">
       <div className="max-w-5xl mx-auto text-center">
-        <h1 className="text-4xl font-bold mb-6">About CineVerse</h1>
+        <h1 className="text-3xl md:text-4xl  font-bold mb-6">
+          About CineVerse
+        </h1>
         <p className="text-lg mb-8">
           Welcome to{" "}
           <span className="text-blue-500 font-semibold">CineVerse</span>, your

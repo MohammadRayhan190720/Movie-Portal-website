@@ -54,9 +54,7 @@ const router = createBrowserRouter([
       {
         path: "/movieDetails/:id",
         element: (
-          <PrivateRoute>
             <MovieDetails></MovieDetails>
-          </PrivateRoute>
         ),
         loader: ({ params }) =>
           fetch(
